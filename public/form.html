@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>Anthasia</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <h1>Salut mec</h1>
+        <form>
+            <label for="nick">Votre Nom :</label>
+            <br/>
+            <input type="text" id="nick" name="nick" placeholder="Ecris ton nom ici"/>
+            <br/>
+            <label fo="message">Votre Message :</label>
+            <br/>
+            <textarea id="message" name="message" placeholder="Ecris ton message ici"></textarea>
+            <br/>
+            <button id="send">Envoyer</button>
+        </form>
+    </body>
+    <script>
+        $(function() {
+            $("#send").on('click', function (e) {
+                e.preventDefault();
+                $.post(
+                    '?p',
+                    {
+                        nick: $("#nick").val(),
+                        message: $("#message").val(),
+                    },
+
+                    function (data) {
+                        if (data === 'sended') {
+                            console.log("Le message a été posté");
+                            window.location.replace("/");
+                        } else {
+                            console.error("Impossible de poster le message");
+                        }
+
+                    },
+                    'text'
+                );
+            });
+        });
+    </script>
+</html>

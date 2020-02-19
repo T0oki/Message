@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>Anthasia</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+        </div>
+        <section>
+            <a href="?f">Ajouter un message</a>
+        </section>
+    </body>
+    <script>
+        $(function() {
+            $.get(
+                '?g',{},function (data) {
+                    let obj = JSON.parse(data);
+                    let cards = '',
+                        container = $('.container');
+                    for (let i in obj) {
+                        let nick = obj[i]['nick'],
+                            message = obj[i]['message'];
+
+                        cards = cards + `<article><h3>${nick}</h3><p>${message}</p></article>`;
+                    }
+                    container.html(container.html() + cards);
+                }
+
+            );
+        });
+    </script>
+</html>

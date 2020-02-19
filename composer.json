@@ -1,0 +1,13 @@
+{
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+
+    "name": "tooki/message",
+    "require": {
+        "ext-pdo": "*",
+        "ext-json": "*"
+    }
+}
